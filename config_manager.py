@@ -25,6 +25,10 @@ class ConfigFactory(ABC):
     def create_config(key):
         pass
 
+    @abstractmethod
+    def set_database_connection(self, value):
+        pass
+
 
 class DevelopConfig(ConfigFactory, Configuration):
     @staticmethod
@@ -32,6 +36,9 @@ class DevelopConfig(ConfigFactory, Configuration):
         config = Configuration()
         config.app_settings["develop"] = key
         return config
+
+    def set_database_connection(self, value):
+        self.app_settings["develop"]["database"] = value
 
 
 class ProductionConfig(ConfigFactory, Configuration):
@@ -41,6 +48,9 @@ class ProductionConfig(ConfigFactory, Configuration):
         config.app_settings["production"] = key
         return config
 
+    def set_database_connection(self):
+        pass
+
 
 class TestConfig(ConfigFactory, Configuration):
     @staticmethod
@@ -48,6 +58,9 @@ class TestConfig(ConfigFactory, Configuration):
         config = Configuration()
         config.app_settings["test"] = key
         return config
+
+    def set_database_connection(self):
+        pass
 
 
 develop = DevelopConfig()
@@ -58,6 +71,8 @@ develop.create_config({"Debug": True, "database": "Postgres"})
 production.create_config({"Debug": False, "database": "SQLite"})
 test.create_config({"Debug": None, "database": "MyDatabase"})
 
-print(develop.app_settings.get("production").get("Debug"))
+develop.set_database_connection({"PORT": 5432, "DATABASE": "Postgres"})
+
+print(develop.app_settings.get("develop").get("Debug"))
 print(production.app_settings.get("production"))
 print(test.app_settings)
