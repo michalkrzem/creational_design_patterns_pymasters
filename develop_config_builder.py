@@ -9,10 +9,10 @@ class DevelopConfigBuilder(Builder):
         self.configuration = DevelopConfig()
 
     def set_database_connection(self, value: str | int | dict | List) -> None:
-        self.configuration.app_settings["develop"]["DATABASE"] = value
+        self.configuration.config.app_settings["develop"]["DATABASE"] = value
 
     def set_env_username(self, value: str | int | dict | List) -> None:
-        self.configuration.app_settings["develop"]["ENV_USER"] = value
+        self.configuration.config.app_settings["develop"]["ENV_USER"] = value
 
     def set_host(self, value: str | int | dict | List) -> None:
-        self.configuration.app_settings["develop"]["HOST"] = value
+        self.configuration.config.app_settings["develop"]["HOST"] = value

@@ -4,10 +4,9 @@ from develop_config_builder import DevelopConfigBuilder
 from production_config_builder import ProductionConfigBuilder
 
 # I create my configuration instances
-test = TestConfig()
 develop = DevelopConfig()
+test = TestConfig()
 production = ProductionConfig()
-
 ###################################################################################################
 # I create configurations by instances: test, prod, dev
 test.create_config({

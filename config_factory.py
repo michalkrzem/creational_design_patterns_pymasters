@@ -5,31 +5,26 @@ from config import Configuration
 
 
 class ConfigFactory(ABC):
-    @staticmethod
+    config = Configuration()
+
     @abstractmethod
-    def create_config(key):
+    def create_config(self, key):
         pass
 
 
-class DevelopConfig(ConfigFactory, Configuration):
-    @staticmethod
-    def create_config(key: str | int | dict | List) -> Configuration:
-        config = Configuration()
-        config.app_settings["develop"] = key
-        return config
+class DevelopConfig(ConfigFactory):
+    def create_config(self, key: str | int | dict | List) -> Configuration:
+        self.config.app_settings["develop"] = key
+        return self.config
 
 
-class ProductionConfig(ConfigFactory, Configuration):
-    @staticmethod
-    def create_config(key: str | int | dict | List) -> Configuration:
-        config = Configuration()
-        config.app_settings["production"] = key
-        return config
+class ProductionConfig(ConfigFactory):
+    def create_config(self, key: str | int | dict | List) -> Configuration:
+        self.config.app_settings["production"] = key
+        return self.config
 
 
-class TestConfig(ConfigFactory, Configuration):
-    @staticmethod
-    def create_config(key: str | int | dict | List) -> Configuration:
-        config = Configuration()
-        config.app_settings["test"] = key
-        return config
+class TestConfig(ConfigFactory):
+    def create_config(self, key: str | int | dict | List) -> Configuration:
+        self.config.app_settings["test"] = key
+        return self.config
