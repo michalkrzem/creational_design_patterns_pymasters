@@ -9,15 +9,15 @@ test = TestConfig()
 production = ProductionConfig()
 ###################################################################################################
 # I create configurations by instances: test, prod, dev
-test.create_config({
+test.set_config({
     "DEBUG": None,
     "DATABASE": "MyDatabase"
 })
-develop.create_config({
+develop.set_config({
     "DEBUG": True,
     "DEFAULT_FROM_EMAIL": "webmaster@example.com"
 })
-production.create_config({
+production.set_config({
     "ALLOWED_HOSTS": ["www.example.com"],
     "DEBUG": True,
     "DEFAULT_FROM_EMAIL": "webmaster@example.com"
